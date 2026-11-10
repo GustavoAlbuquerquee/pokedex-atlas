@@ -1,0 +1,132 @@
+.pokedex-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ==========================================================================
+   Painel de abertura
+   ========================================================================== */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-8);
+  padding: clamp(var(--space-5), 3vw, var(--space-8));
+  overflow: hidden;
+  background:
+    linear-gradient(
+      120deg,
+      color-mix(in srgb, var(--brand-crimson) 11%, transparent),
+      transparent 46%
+    ),
+    var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-glow), var(--rim-light);
+}
+
+.hero__glow {
+  position: absolute;
+  inset-block-start: -60%;
+  inset-inline-end: -10%;
+  width: 46%;
+  height: 190%;
+  pointer-events: none;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--brand-amber) 22%, transparent),
+    transparent 72%
+  );
+  filter: blur(8px);
+}
+
+.hero__text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  max-width: 58ch;
+}
+
+.hero__title {
+  font-size: var(--text-3xl);
+  letter-spacing: -0.025em;
+}
+
+.hero__lead {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.hero__lead code {
+  padding: 0.1em 0.38em;
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--text-primary) 8%, transparent);
+  border-radius: var(--radius-xs);
+}
+
+/* ---------- Três números ---------- */
+.hero__stats {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: var(--space-6);
+}
+
+.hero__stats div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.hero__stats dt {
+  font-family: var(--font-display);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--text-faint);
+}
+
+.hero__stats dd {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+@media (width <= 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .hero__stats {
+    gap: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .hero__stats div {
+    align-items: flex-start;
+  }
+
+  .hero__stats dd {
+    font-size: var(--text-2xl);
+  }
+}
+
+@media (width <= 560px) {
+  .hero__glow {
+    inset-inline-end: -30%;
+    width: 80%;
+  }
+}

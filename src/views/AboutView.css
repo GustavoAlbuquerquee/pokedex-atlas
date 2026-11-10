@@ -1,0 +1,198 @@
+.about-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 1100px;
+}
+
+.about-view code {
+  padding: 0.1em 0.38em;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--text-primary) 8%, transparent);
+  border-radius: var(--radius-xs);
+}
+
+/* ---------- Abertura ---------- */
+.about-view__intro {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(var(--space-5), 3vw, var(--space-8));
+}
+
+.about-view__glow {
+  position: absolute;
+  inset-block-start: -70%;
+  inset-inline-end: -8%;
+  width: 40%;
+  height: 200%;
+  pointer-events: none;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--brand-crimson) 20%, transparent),
+    transparent 72%
+  );
+  filter: blur(6px);
+}
+
+.about-view__title {
+  position: relative;
+  margin-block: var(--space-2) var(--space-3);
+  font-size: var(--text-2xl);
+}
+
+.about-view__lead {
+  position: relative;
+  max-width: 76ch;
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+}
+
+.about-view__identity {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.about-view__identity dt {
+  font-family: var(--font-display);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--text-faint);
+}
+
+.about-view__identity dd {
+  margin-top: 2px;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ---------- Blocos ---------- */
+.about-view__block {
+  padding: var(--space-5);
+}
+
+.about-view__block h3 {
+  margin-bottom: var(--space-4);
+  font-size: var(--text-lg);
+}
+
+.about-view__features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+}
+
+.about-view__features li {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.about-view__feature-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 2.3rem;
+  height: 2.3rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+  border-radius: var(--radius-sm);
+}
+
+.about-view__features strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+}
+
+.about-view__features p {
+  margin-top: 2px;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: var(--leading-snug);
+}
+
+/* ---------- Listas de marcação ---------- */
+.about-view__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.about-view__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.about-view__list .icon {
+  flex: 0 0 auto;
+  margin-top: 4px;
+  color: var(--success);
+}
+
+/* ---------- Créditos ---------- */
+.about-view__credits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+
+.about-view__credits a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.about-view__credits a:hover {
+  text-decoration: underline;
+}
+
+.about-view__credits p {
+  margin-top: 2px;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: var(--leading-snug);
+}
+
+.about-view__note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  line-height: var(--leading-normal);
+}
+
+.about-view__note .icon {
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+@media (width <= 560px) {
+  .about-view__block,
+  .about-view__intro {
+    padding: var(--space-4);
+  }
+}

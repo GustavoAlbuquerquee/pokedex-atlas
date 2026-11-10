@@ -1,0 +1,208 @@
+.pokemon-row {
+  position: relative;
+  animation: atlas-rise var(--duration-base) var(--ease-out) both;
+  animation-delay: var(--enter-delay);
+}
+
+.pokemon-row__surface {
+  display: grid;
+  grid-template-columns: auto minmax(11rem, 1fr) auto;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  padding: var(--space-3) calc(var(--space-4) + 4.6rem) var(--space-3) var(--space-3);
+  text-align: left;
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition:
+    background var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.pokemon-row__surface:hover {
+  transform: translateX(3px);
+  background: var(--surface-2);
+  border-color: rgb(var(--type-rgb) / 40%);
+}
+
+/* ---------- Miniatura ---------- */
+.pokemon-row__thumb {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  background:
+    radial-gradient(
+      closest-side,
+      rgb(var(--type-rgb) / calc(var(--aura-strength) * 0.5)),
+      transparent 76%
+    ),
+    var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.pokemon-row__thumb img {
+  width: 48px;
+  height: 48px;
+}
+
+/* ---------- Identidade ---------- */
+.pokemon-row__identity {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "id name"
+    "types types";
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+  min-width: 0;
+}
+
+.pokemon-row__id {
+  grid-area: id;
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+}
+
+.pokemon-row__name {
+  grid-area: name;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pokemon-row__types {
+  grid-area: types;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+/* ---------- Colunas de atributos ---------- */
+.pokemon-row__stats {
+  display: grid;
+  grid-template-columns: repeat(7, 3.4rem);
+  gap: var(--space-2);
+}
+
+.pokemon-row__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.pokemon-row__stat-label {
+  font-family: var(--font-display);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+
+.pokemon-row__stat-value {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.pokemon-row__stat-track {
+  width: 100%;
+  height: 3px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--text-primary) 9%, transparent);
+  border-radius: var(--radius-full);
+}
+
+.pokemon-row__stat-fill {
+  display: block;
+  width: var(--stat-fill);
+  height: 100%;
+  background: rgb(var(--type-rgb));
+  border-radius: inherit;
+}
+
+.pokemon-row__stat--total .pokemon-row__stat-value {
+  color: var(--accent);
+}
+
+/* ---------- Ações ---------- */
+.pokemon-row__tools {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: var(--space-3);
+  z-index: 2;
+  display: flex;
+  gap: var(--space-2);
+  transform: translateY(-50%);
+}
+
+.pokemon-row__compare {
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+.pokemon-row__compare:hover {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 48%, transparent);
+}
+
+.pokemon-row__compare.is-active {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+/* ---------- Tablet e celular ---------- */
+@media (width <= 1100px) {
+  .pokemon-row__surface {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "thumb identity"
+      "stats stats";
+    padding-inline-end: calc(var(--space-3) + 4.6rem);
+  }
+
+  .pokemon-row__thumb {
+    grid-area: thumb;
+  }
+
+  .pokemon-row__identity {
+    grid-area: identity;
+  }
+
+  /* A faixa de atributos rola sozinha em vez de comprimir as colunas. */
+  .pokemon-row__stats {
+    grid-area: stats;
+    overflow-x: auto;
+    padding-top: var(--space-2);
+    padding-bottom: 2px;
+    border-top: 1px solid var(--border-subtle);
+    scrollbar-width: none;
+  }
+
+  .pokemon-row__stats::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pokemon-row__tools {
+    inset-block-start: var(--space-3);
+    transform: none;
+  }
+}

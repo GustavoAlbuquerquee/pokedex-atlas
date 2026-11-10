@@ -1,0 +1,13 @@
+.icon {
+  flex: 0 0 auto;
+}
+
+/* Pontos e miolos continuam preenchidos mesmo no ícone de traço. */
+.icon .icon__dot {
+  fill: currentcolor;
+  stroke: none;
+}
+
+.icon--filled {
+  stroke-width: 1.2;
+}

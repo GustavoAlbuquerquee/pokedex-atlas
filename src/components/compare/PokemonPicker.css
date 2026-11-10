@@ -1,0 +1,80 @@
+.picker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+}
+
+.picker__title {
+  font-size: var(--text-lg);
+  padding-inline-end: var(--space-10);
+}
+
+/* O campo de pesquisa cresce na horizontal dentro da barra da Pokédex
+   (`flex: 1 1 18rem`). Aqui o contêiner é uma coluna, então esse mesmo
+   `flex-grow` o esticaria na vertical: a altura volta a ser a do conteúdo. */
+.picker .search-field {
+  flex: 0 0 auto;
+}
+
+.picker__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--space-2);
+  max-height: 52vh;
+  overflow-y: auto;
+  padding: 2px;
+}
+
+.picker__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2);
+  text-align: left;
+  background: var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  transition:
+    background var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+.picker__item:hover {
+  background: var(--surface-3);
+  border-color: rgb(var(--type-rgb) / 55%);
+}
+
+.picker__item img {
+  width: 36px;
+  height: 36px;
+}
+
+.picker__item-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.picker__item-id {
+  font-size: var(--text-2xs);
+  color: var(--text-faint);
+}
+
+@media (width <= 560px) {
+  .picker {
+    padding: var(--space-5) var(--space-4) var(--space-8);
+  }
+
+  .picker__list {
+    grid-template-columns: 1fr 1fr;
+    max-height: 56vh;
+  }
+}

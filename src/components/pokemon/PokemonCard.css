@@ -1,0 +1,252 @@
+.pokemon-card {
+  position: relative;
+  animation: atlas-rise var(--duration-slow) var(--ease-out) both;
+  animation-delay: var(--enter-delay);
+}
+
+/* ---------- Superfície clicável ---------- */
+.pokemon-card__surface {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  overflow: hidden;
+  text-align: left;
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glow), var(--rim-light);
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+
+/* Brilho de topo: dá a sensação de superfície física, não de retângulo plano. */
+.pokemon-card__surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--card-sheen);
+  pointer-events: none;
+}
+
+.pokemon-card__surface:hover {
+  transform: translateY(-5px);
+  border-color: rgb(var(--type-rgb) / 42%);
+  box-shadow:
+    0 0 0 1px rgb(var(--type-rgb) / 22%),
+    0 26px 52px -24px rgb(var(--type-rgb) / 55%),
+    var(--shadow-lg);
+}
+
+.pokemon-card__surface:active {
+  transform: translateY(-2px) scale(0.995);
+}
+
+/* ---------- Aura do tipo ---------- */
+.pokemon-card__aura {
+  position: absolute;
+  inset-block-start: -38%;
+  inset-inline: -18%;
+  height: 72%;
+  pointer-events: none;
+  background: radial-gradient(
+    closest-side,
+    rgb(var(--type-rgb) / calc(var(--aura-strength) * 0.92)),
+    rgb(var(--type-2-rgb) / calc(var(--aura-strength) * 0.34)) 58%,
+    transparent 78%
+  );
+  filter: blur(6px);
+  opacity: 0.85;
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.pokemon-card__surface:hover .pokemon-card__aura {
+  opacity: 1;
+  transform: scale(1.09);
+}
+
+/* Linha superior na cor do tipo: a "assinatura" do card. */
+.pokemon-card__ring {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 14%;
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(var(--type-rgb) / 85%),
+    rgb(var(--type-2-rgb) / 85%),
+    transparent
+  );
+  opacity: 0.75;
+}
+
+/* ---------- Número ---------- */
+.pokemon-card__id {
+  position: absolute;
+  inset-block-start: var(--space-4);
+  inset-inline-start: var(--space-4);
+  z-index: 1;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Arte ---------- */
+.pokemon-card__art {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  min-height: 132px;
+  margin-top: var(--space-2);
+}
+
+.pokemon-card__art img {
+  width: min(62%, 150px);
+  height: auto;
+  filter: var(--art-drop-shadow);
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.pokemon-card__surface:hover .pokemon-card__art img {
+  transform: translateY(-6px) scale(1.07);
+}
+
+/* ---------- Identidade ---------- */
+.pokemon-card__identity {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.pokemon-card__name {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+.pokemon-card__types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+/* ---------- Atributos (duas colunas de três) ---------- */
+.pokemon-card__stats {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2) var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ---------- Total ---------- */
+.pokemon-card__total {
+  position: absolute;
+  inset-block-start: var(--space-3);
+  inset-inline-end: var(--space-4);
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.pokemon-card__total-label {
+  font-family: var(--font-display);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--text-faint);
+}
+
+.pokemon-card__total-value {
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+/* ---------- Ações sobrepostas ---------- */
+.pokemon-card__tools {
+  position: absolute;
+  inset-block-start: calc(var(--space-4) + 1.9rem);
+  inset-inline-end: var(--space-3);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  opacity: 0;
+  transform: translateX(6px);
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+
+/* No toque não existe hover: as ações ficam sempre visíveis. */
+.pokemon-card:hover .pokemon-card__tools,
+.pokemon-card:focus-within .pokemon-card__tools {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: none) {
+  .pokemon-card__tools {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.pokemon-card__compare {
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--surface-1) 72%, transparent);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(6px);
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-spring);
+}
+
+.pokemon-card__compare:hover {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 48%, transparent);
+  transform: scale(1.08);
+}
+
+.pokemon-card__compare.is-active {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+@media (width <= 480px) {
+  .pokemon-card__art {
+    min-height: 112px;
+  }
+
+  .pokemon-card__art img {
+    width: min(55%, 120px);
+  }
+}

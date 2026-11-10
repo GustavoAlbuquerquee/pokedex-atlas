@@ -1,0 +1,42 @@
+.collection__items--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
+  gap: var(--space-4);
+}
+
+.collection__items--list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.collection__more {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding-block: var(--space-8) var(--space-4);
+}
+
+/* Sentinela do IntersectionObserver: fica acima do botão para o carregamento
+   começar antes de o usuário chegar ao fim da lista. */
+.collection__sentinel {
+  position: absolute;
+  inset-block-start: calc(var(--space-8) * -1);
+  width: 1px;
+  height: 1px;
+}
+
+.collection__progress {
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+}
+
+@media (width <= 560px) {
+  .collection__items--grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+    gap: var(--space-3);
+  }
+}

@@ -1,0 +1,211 @@
+/* ==========================================================================
+   Painel de estatísticas — MetricTile, TypeDistribution e RecordBoard.
+   Os três compartilham a mesma linguagem visual, por isso um CSS só para a
+   pasta, em vez de três arquivos com as mesmas regras repetidas.
+   ========================================================================== */
+
+/* ---------- MetricTile ---------- */
+.metric-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-4);
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--rim-light);
+}
+
+.metric-tile.is-accent {
+  background:
+    linear-gradient(140deg, color-mix(in srgb, var(--accent) 12%, transparent), transparent 62%),
+    var(--surface-1);
+  border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.metric-tile__icon {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  margin-bottom: var(--space-2);
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: var(--radius-sm);
+}
+
+.metric-tile__label {
+  font-family: var(--font-display);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--text-faint);
+}
+
+.metric-tile__value {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+.metric-tile__hint {
+  font-size: var(--text-2xs);
+  color: var(--text-muted);
+  line-height: var(--leading-snug);
+}
+
+/* ---------- TypeDistribution ---------- */
+.type-dist {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.type-dist__row {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr 2.4rem 3.4rem;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  border-radius: var(--radius-xs);
+  transition: background var(--duration-fast) var(--ease-out);
+}
+
+.type-dist__row:hover {
+  background: var(--surface-2);
+}
+
+.type-dist__label {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.type-dist__track {
+  height: 10px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--text-primary) 7%, transparent);
+  border-radius: var(--radius-full);
+}
+
+.type-dist__fill {
+  display: block;
+  width: var(--bar-fill);
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgb(var(--type-rgb) / 55%),
+    rgb(var(--type-rgb))
+  );
+  border-radius: inherit;
+  transform-origin: left center;
+  animation: atlas-bar-grow var(--duration-slower) var(--ease-out) both;
+}
+
+.type-dist__count {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.type-dist__share {
+  font-size: var(--text-2xs);
+  color: var(--text-faint);
+  text-align: right;
+}
+
+/* ---------- RecordBoard ---------- */
+.records {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: var(--space-2);
+}
+
+.records__item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "field field field"
+    "art name value";
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  width: 100%;
+  padding: var(--space-3);
+  text-align: left;
+  background:
+    radial-gradient(
+      closest-side at 14% 70%,
+      rgb(var(--type-rgb) / calc(var(--aura-strength) * 0.4)),
+      transparent 72%
+    ),
+    var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.records__item:hover {
+  border-color: rgb(var(--type-rgb) / 55%);
+  transform: translateY(-3px);
+}
+
+.records__field {
+  grid-area: field;
+  font-family: var(--font-display);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--text-faint);
+}
+
+.records__art {
+  grid-area: art;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+}
+
+.records__art img {
+  width: 44px;
+  height: 44px;
+}
+
+.records__name {
+  grid-area: name;
+  min-width: 0;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.records__value {
+  grid-area: value;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--accent);
+}
+
+@media (width <= 560px) {
+  .type-dist__row {
+    grid-template-columns: 5rem 1fr 2.1rem;
+    gap: var(--space-2);
+  }
+
+  .type-dist__share {
+    display: none;
+  }
+}

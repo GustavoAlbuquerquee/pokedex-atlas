@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Estilos de nível de aplicação.
+   Quase tudo está nos componentes; aqui ficam apenas as regras que valem para
+   o App como um todo.
+   ========================================================================== */
+
+/* Troca de tela: uma entrada curta, sem deslocar o layout. */
+.shell__content > * {
+  animation: atlas-fade var(--duration-base) var(--ease-out) both;
+}
+
+.favorites-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.favorites-view__foot {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-2);
+}

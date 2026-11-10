@@ -1,0 +1,244 @@
+.compare-table {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glow), var(--rim-light);
+}
+
+/* ---------- Placar ---------- */
+.compare-table__summary {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.compare-table__score {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text-muted);
+}
+
+.compare-table__score:first-child {
+  justify-content: flex-end;
+}
+
+.compare-table__score.is-winner {
+  color: var(--text-primary);
+}
+
+.compare-table__score-name {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.compare-table__score-value {
+  display: grid;
+  place-items: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  font-size: var(--text-md);
+  font-weight: 700;
+  background: var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.compare-table__score.is-winner .compare-table__score-value {
+  color: var(--brand-amber);
+  background: color-mix(in srgb, var(--brand-amber) 12%, transparent);
+  border-color: color-mix(in srgb, var(--brand-amber) 40%, transparent);
+}
+
+.compare-table__verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.compare-table__verdict .icon {
+  color: var(--brand-amber);
+}
+
+/* ---------- Tabela ---------- */
+.compare-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.compare-table thead th {
+  padding-bottom: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--text-faint);
+}
+
+.compare-table thead th:first-child {
+  text-align: right;
+}
+
+.compare-table thead th:last-child {
+  text-align: left;
+}
+
+.compare-table tbody tr {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.compare-table tbody tr.is-total {
+  border-top-width: 2px;
+  border-top-color: var(--border-default);
+}
+
+.compare-table tbody td,
+.compare-table tbody th {
+  padding-block: var(--space-2);
+  vertical-align: middle;
+}
+
+/* ---------- Lados ---------- */
+/* As células continuam células de tabela (o alinhamento das colunas depende
+   disso); quem organiza valor e barra é o span interno. */
+.compare-table__side {
+  width: 40%;
+}
+
+.compare-table__cell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.compare-table__cell--center {
+  flex-direction: column;
+  gap: 1px;
+}
+
+.compare-table__value {
+  flex: 0 0 2.5rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.compare-table__side.is-winner .compare-table__value {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Barras crescem do centro para fora. */
+.compare-table__bar {
+  flex: 1;
+  height: 8px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--text-primary) 8%, transparent);
+  border-radius: var(--radius-full);
+}
+
+.compare-table__bar-fill {
+  display: block;
+  width: var(--bar-fill);
+  height: 100%;
+  background: var(--bar-color);
+  border-radius: inherit;
+  transform-origin: right center;
+  animation: atlas-bar-grow var(--duration-slow) var(--ease-out) both;
+}
+
+.compare-table__bar--left {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.compare-table__bar--right .compare-table__bar-fill {
+  transform-origin: left center;
+}
+
+.compare-table__side:not(.is-winner) .compare-table__bar-fill {
+  opacity: 0.45;
+}
+
+/* ---------- Coluna central ---------- */
+.compare-table__field {
+  padding-inline: var(--space-3);
+  white-space: nowrap;
+}
+
+.compare-table__field-name {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.compare-table__diff {
+  font-size: var(--text-2xs);
+  color: var(--text-faint);
+}
+
+.is-total .compare-table__field-name,
+.is-total .compare-table__value {
+  color: var(--accent);
+}
+
+/* ---------- Celular ---------- */
+@media (width <= 680px) {
+  .compare-table {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .compare-table__summary {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+    text-align: center;
+  }
+
+  .compare-table__score,
+  .compare-table__score:first-child {
+    justify-content: center;
+  }
+
+  .compare-table__cell {
+    gap: var(--space-2);
+  }
+
+  .compare-table__value {
+    flex-basis: 2.1rem;
+    font-size: var(--text-xs);
+  }
+
+  .compare-table__field {
+    padding-inline: var(--space-1);
+  }
+
+  .compare-table__field .compare-table__cell {
+    gap: 0;
+  }
+
+  .compare-table__field-name {
+    font-size: var(--text-2xs);
+    white-space: normal;
+    text-align: center;
+  }
+
+  .compare-table thead {
+    display: none;
+  }
+}

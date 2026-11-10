@@ -1,0 +1,199 @@
+.trainer-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  height: 100%;
+  padding: var(--space-5);
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glow), var(--rim-light);
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+
+.trainer-card:hover {
+  border-color: var(--border-default);
+}
+
+/* Realce ao chegar pelo link "ver treinador" dos detalhes. */
+.trainer-card.is-highlighted {
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent),
+    0 24px 48px -28px color-mix(in srgb, var(--accent) 75%, transparent);
+}
+
+/* ---------- Cabeçalho ---------- */
+.trainer-card__head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.trainer-card__avatar {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      closest-side,
+      color-mix(in srgb, var(--accent) 16%, transparent),
+      transparent 74%
+    ),
+    var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.trainer-card__avatar img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+}
+
+.trainer-card__initials {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.trainer-card__title {
+  min-width: 0;
+}
+
+.trainer-card__name {
+  font-size: var(--text-lg);
+}
+
+.trainer-card__meta {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.trainer-card__power {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.trainer-card__power-label {
+  font-family: var(--font-display);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--text-faint);
+}
+
+.trainer-card__power-value {
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+/* ---------- Insígnias ---------- */
+.trainer-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.trainer-card__pip {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--text-faint);
+  background: var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  opacity: 0.55;
+}
+
+.trainer-card__pip.is-on {
+  color: var(--brand-amber);
+  background: color-mix(in srgb, var(--brand-amber) 14%, transparent);
+  border-color: color-mix(in srgb, var(--brand-amber) 42%, transparent);
+  box-shadow: 0 0 12px -4px color-mix(in srgb, var(--brand-amber) 70%, transparent);
+  opacity: 1;
+}
+
+/* ---------- Time ---------- */
+.trainer-card__team {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: var(--space-2);
+}
+
+.team-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  padding: var(--space-2) var(--space-1);
+  background: var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.team-slot:hover {
+  background: var(--surface-3);
+  border-color: rgb(var(--type-rgb) / 58%);
+  transform: translateY(-3px);
+}
+
+.team-slot__art {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 52px;
+  background: radial-gradient(
+    closest-side at 50% 62%,
+    rgb(var(--type-rgb) / calc(var(--aura-strength) * 0.52)),
+    transparent 74%
+  );
+}
+
+.team-slot__art img {
+  width: 48px;
+  height: 48px;
+}
+
+.team-slot__name {
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.team-slot__id {
+  font-size: var(--text-2xs);
+  color: var(--text-faint);
+}
+
+@media (width <= 560px) {
+  .trainer-card {
+    padding: var(--space-4);
+  }
+
+  .trainer-card__power {
+    display: none;
+  }
+
+  .trainer-card__head {
+    grid-template-columns: auto 1fr;
+  }
+}

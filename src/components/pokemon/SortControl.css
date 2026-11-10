@@ -1,0 +1,68 @@
+.sort-control {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.sort-control__select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-3);
+  background: var(--surface-2);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.sort-control__select:focus-within {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.sort-control__select select {
+  padding: 0.68rem 1.4rem 0.68rem 0;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  appearance: none;
+  cursor: pointer;
+}
+
+/* O menu aberto é desenhado pelo sistema: as opções precisam de cor explícita. */
+.sort-control__select option {
+  color: var(--text-primary);
+  background: var(--surface-1);
+}
+
+.sort-control__icon {
+  color: var(--text-faint);
+}
+
+.sort-control__caret {
+  position: absolute;
+  inset-inline-end: var(--space-2);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.sort-control__direction {
+  color: var(--text-secondary);
+}
+
+@media (width <= 560px) {
+  .sort-control {
+    flex: 1 1 100%;
+  }
+
+  .sort-control__select {
+    flex: 1;
+  }
+
+  .sort-control__select select {
+    width: 100%;
+  }
+}

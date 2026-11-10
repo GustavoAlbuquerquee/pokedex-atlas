@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Pokédex Atlas — por Gustavo Albuquerque</title>
+
+    <meta
+      name="description"
+      content="Pokédex Atlas: aplicação React + Vite com os 151 Pokémon de Kanto, pesquisa por nome ou número, filtro por tipo, atributos, treinadores, favoritos, comparação e estatísticas. Desenvolvido por Gustavo Albuquerque."
+    />
+    <meta name="author" content="Gustavo Albuquerque" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#07080c" />
+
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+    <!-- Tipografia: Sora para títulos e interface, Inter para texto (Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+      Tema aplicado antes de o React carregar.
+      Sem isto a página abriria no tema escuro padrão e "piscaria" para o claro
+      quando o React lesse a preferência salva. O mesmo valor é lido de volta
+      pelo hook useTheme, então HTML e React nunca discordam.
+    -->
+    <script>
+      (function () {
+        var theme = "dark";
+        try {
+          var saved = window.localStorage.getItem("atlas:theme");
+          if (saved === "light" || saved === "dark") theme = saved;
+          else if (window.matchMedia("(prefers-color-scheme: light)").matches) theme = "light";
+        } catch (e) {
+          /* armazenamento bloqueado: segue no tema escuro */
+        }
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

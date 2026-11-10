@@ -1,0 +1,59 @@
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  border-radius: var(--radius-full);
+  line-height: 1;
+}
+
+.type-badge__dot {
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: var(--radius-full);
+  background: currentcolor;
+  opacity: 0.85;
+}
+
+/* ---------- Tamanhos ---------- */
+.type-badge--sm {
+  padding: 0.3em 0.62em;
+  font-size: var(--text-2xs);
+}
+
+.type-badge--md {
+  padding: 0.42em 0.78em;
+  font-size: var(--text-xs);
+}
+
+.type-badge--lg {
+  padding: 0.52em 0.95em;
+  font-size: var(--text-sm);
+}
+
+/* ---------- Variantes ---------- */
+.type-badge--soft {
+  color: rgb(var(--type-rgb));
+  background: rgb(var(--type-rgb) / 13%);
+  border: 1px solid rgb(var(--type-rgb) / 34%);
+}
+
+:root[data-theme="light"] .type-badge--soft {
+  color: color-mix(in srgb, rgb(var(--type-rgb)) 74%, #0b0d14);
+  background: rgb(var(--type-rgb) / 14%);
+  border-color: rgb(var(--type-rgb) / 42%);
+}
+
+.type-badge--solid {
+  color: var(--type-ink);
+  background: rgb(var(--type-rgb));
+  border: 1px solid rgb(var(--type-rgb));
+  box-shadow: 0 4px 14px -6px rgb(var(--type-rgb) / 70%);
+}
+
+.type-badge--solid .type-badge__dot {
+  opacity: 0.6;
+}

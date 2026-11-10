@@ -1,0 +1,8 @@
+# Normaliza fim de linha: LF no repositorio, nativo no disco.
+# Evita que um clone em outra maquina apareca com o projeto inteiro modificado.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary
+*.webp binary

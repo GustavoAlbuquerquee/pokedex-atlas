@@ -1,0 +1,82 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: grid;
+  place-items: center;
+  padding: var(--space-6);
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(3 4 8 / 68%);
+  backdrop-filter: blur(10px) saturate(130%);
+  animation: atlas-fade var(--duration-base) var(--ease-out) both;
+}
+
+:root[data-theme="light"] .modal__backdrop {
+  background: rgb(16 19 28 / 42%);
+}
+
+.modal__panel {
+  position: relative;
+  width: 100%;
+  max-height: calc(100dvh - var(--space-12));
+  overflow: hidden auto;
+  background: var(--surface-1);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  animation: atlas-pop var(--duration-base) var(--ease-out) both;
+}
+
+.modal__panel--md {
+  max-width: 580px;
+}
+
+.modal__panel--lg {
+  max-width: 1040px;
+}
+
+.modal__close {
+  position: absolute;
+  inset-block-start: var(--space-4);
+  inset-inline-end: var(--space-4);
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--surface-2) 86%, transparent);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(8px);
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+
+.modal__close:hover {
+  color: var(--text-primary);
+  background: var(--surface-3);
+  transform: rotate(90deg);
+}
+
+/* ---------- Celular: folha que sobe de baixo ---------- */
+@media (width <= 760px) {
+  .modal {
+    padding: 0;
+    place-items: end stretch;
+  }
+
+  .modal__panel {
+    max-width: none;
+    max-height: 94dvh;
+    border-bottom: none;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    animation: atlas-sheet-up var(--duration-base) var(--ease-out) both;
+  }
+}

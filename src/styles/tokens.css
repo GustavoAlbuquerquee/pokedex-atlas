@@ -1,0 +1,180 @@
+/* ==========================================================================
+   Pokédex Atlas — tokens de design
+   Fonte única de cores, tipografia, espaçamento, raios, sombras e tempos.
+   Nenhum componente define cor ou medida "solta": todos consomem daqui.
+   ========================================================================== */
+
+:root {
+  /* ---------- Tipografia ---------- */
+  --font-display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
+
+  /* Escala tipográfica fluida (clamp: funciona de 360px a 1920px sem media query) */
+  --text-2xs: 0.6875rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.25rem + 1.1vw, 2rem);
+  --text-3xl: clamp(1.875rem, 1.4rem + 2vw, 2.75rem);
+  --text-display: clamp(2.25rem, 1.5rem + 3.4vw, 4rem);
+
+  --leading-tight: 1.1;
+  --leading-snug: 1.3;
+  --leading-normal: 1.55;
+
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.04em;
+  --tracking-caps: 0.12em;
+
+  /* ---------- Espaçamento (base 4px) ---------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* ---------- Raios ---------- */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  /* ---------- Movimento ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 140ms;
+  --duration-base: 220ms;
+  --duration-slow: 420ms;
+  --duration-slower: 680ms;
+
+  /* ---------- Camadas ---------- */
+  --z-nav: 20;
+  --z-toolbar: 30;
+  --z-overlay: 60;
+  --z-modal: 70;
+  --z-toast: 90;
+
+  /* ---------- Medidas de layout ---------- */
+  --shell-max: 1480px;
+  --sidenav-width: 248px;
+  --sidenav-width-compact: 76px;
+  --mobile-nav-height: 68px;
+
+  /* ---------- Marca (igual nos dois temas) ---------- */
+  --brand-crimson: #e8384f;
+  --brand-amber: #ffc53d;
+  --brand-gradient: linear-gradient(135deg, #e8384f 0%, #ff7a3d 52%, #ffc53d 100%);
+}
+
+/* ==========================================================================
+   Tema escuro — o tema padrão do Atlas
+   ========================================================================== */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg-base: #07080c;
+  --bg-deep: #04050a;
+  --surface-1: #0e1017;
+  --surface-2: #141822;
+  --surface-3: #1b202c;
+  --surface-raised: #1f2533;
+  --surface-glass: rgb(14 16 23 / 72%);
+
+  --border-subtle: rgb(255 255 255 / 7%);
+  --border-default: rgb(255 255 255 / 11%);
+  --border-strong: rgb(255 255 255 / 18%);
+
+  --text-primary: #f1f3f8;
+  --text-secondary: #aeb6c6;
+  --text-muted: #79819a;
+  --text-faint: #7b8398;
+  --text-inverse: #0a0b10;
+
+  --accent: #ff7a3d;
+  --accent-soft: rgb(255 122 61 / 16%);
+  --accent-ink: #14161c;
+
+  --success: #35d08a;
+  --warning: #ffc53d;
+  --danger: #ff5b6e;
+
+  --focus-ring: #7aa2ff;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 55%);
+  --shadow-md: 0 8px 24px -8px rgb(0 0 0 / 70%);
+  --shadow-lg: 0 24px 60px -18px rgb(0 0 0 / 80%);
+  --shadow-glow: 0 0 0 1px rgb(255 255 255 / 6%), 0 18px 48px -22px rgb(0 0 0 / 90%);
+
+  /* Brilho interno que dá o "rim light" dos cards no escuro */
+  --rim-light: inset 0 1px 0 rgb(255 255 255 / 7%);
+  --card-sheen: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 5%) 0%,
+    rgb(255 255 255 / 0%) 38%
+  );
+  --aura-strength: 0.5;
+  --art-drop-shadow: drop-shadow(0 18px 24px rgb(0 0 0 / 55%));
+}
+
+/* ==========================================================================
+   Tema claro
+   ========================================================================== */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg-base: #f4f5f8;
+  --bg-deep: #e9ebf1;
+  --surface-1: #ffffff;
+  --surface-2: #f7f8fb;
+  --surface-3: #eef0f6;
+  --surface-raised: #ffffff;
+  --surface-glass: rgb(255 255 255 / 80%);
+
+  --border-subtle: rgb(14 18 32 / 7%);
+  --border-default: rgb(14 18 32 / 11%);
+  --border-strong: rgb(14 18 32 / 18%);
+
+  --text-primary: #10131c;
+  --text-secondary: #474f63;
+  --text-muted: #6b738a;
+  --text-faint: #6a7284;
+  --text-inverse: #ffffff;
+
+  --accent: #d9452b;
+  --accent-soft: rgb(217 69 43 / 10%);
+  --accent-ink: #ffffff;
+
+  --success: #107a52;
+  --warning: #9a6a00;
+  --danger: #c22a3c;
+
+  --focus-ring: #2a5bd7;
+
+  --shadow-sm: 0 1px 2px rgb(16 19 28 / 7%);
+  --shadow-md: 0 10px 26px -12px rgb(16 19 28 / 22%);
+  --shadow-lg: 0 28px 64px -24px rgb(16 19 28 / 28%);
+  --shadow-glow: 0 0 0 1px rgb(16 19 28 / 5%), 0 18px 40px -24px rgb(16 19 28 / 25%);
+
+  --rim-light: inset 0 1px 0 rgb(255 255 255 / 90%);
+  --card-sheen: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 70%) 0%,
+    rgb(255 255 255 / 0%) 46%
+  );
+  --aura-strength: 0.32;
+  --art-drop-shadow: drop-shadow(0 14px 18px rgb(16 19 28 / 22%));
+}
