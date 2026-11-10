@@ -1,6 +1,6 @@
 # Relatório de testes
 
-Pokédex Atlas — React + Vite
+Pokédex Atlas — React + Vite  
 Testes executados no navegador, com a aplicação rodando em `npm run dev`.
 
 **Ambiente:** Windows 11 · Node 24.22.1 · npm 11.19.1 · Vite 8.3.7 · React 19.3

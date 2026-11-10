@@ -2,8 +2,8 @@
 
 **Arquivo interativo dos 151 Pokémon de Kanto — React + Vite**
 
-Desenvolvido por **Gustavo Albuquerque**
-Desenvolvimento e Integração de Aplicações Web — PUC Minas
+Desenvolvido por **Gustavo Albuquerque**  
+Desenvolvimento e Integração de Aplicações Web — PUC Minas  
 Atividade 03 — Pokédex com React + Vite (Prof. João Paulo Aramuni)
 
 ![Pokédex Atlas](docs/imagens/01-pokedex-escuro.jpg)

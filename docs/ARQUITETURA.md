@@ -1,6 +1,6 @@
 # Arquitetura e decisões técnicas
 
-Pokédex Atlas — React + Vite
+Pokédex Atlas — React + Vite  
 Desenvolvido por Gustavo Albuquerque
 
 ---
