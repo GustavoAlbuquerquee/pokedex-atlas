@@ -118,10 +118,10 @@
 }
 
 .trainer-card__pip.is-on {
-  color: var(--brand-amber);
-  background: color-mix(in srgb, var(--brand-amber) 14%, transparent);
-  border-color: color-mix(in srgb, var(--brand-amber) 42%, transparent);
-  box-shadow: 0 0 12px -4px color-mix(in srgb, var(--brand-amber) 70%, transparent);
+  color: var(--highlight);
+  background: color-mix(in srgb, var(--highlight) 14%, transparent);
+  border-color: color-mix(in srgb, var(--highlight) 42%, transparent);
+  box-shadow: 0 0 12px -4px color-mix(in srgb, var(--highlight) 70%, transparent);
   opacity: 1;
 }
 

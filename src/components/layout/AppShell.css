@@ -59,10 +59,10 @@
   place-items: center;
   width: 2.5rem;
   height: 2.5rem;
-  color: #fff;
+  color: var(--brand-black);
   background: var(--brand-gradient);
   border-radius: var(--radius-sm);
-  box-shadow: 0 8px 20px -10px rgb(232 56 79 / 85%);
+  box-shadow: 0 8px 20px -10px rgb(21 88 201 / 85%);
 }
 
 .shell__brand-text {
@@ -86,7 +86,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  background: var(--brand-gradient);
+  background: var(--brand-gradient-text);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -228,7 +228,7 @@
   place-items: center;
   width: 2.3rem;
   height: 2.3rem;
-  color: #fff;
+  color: var(--brand-black);
   background: var(--brand-gradient);
   border-radius: var(--radius-sm);
 }
@@ -317,7 +317,7 @@
   inset-inline-end: -3px;
   width: 6px;
   height: 6px;
-  background: var(--brand-amber);
+  background: var(--highlight-fill);
   border-radius: var(--radius-full);
 }
 

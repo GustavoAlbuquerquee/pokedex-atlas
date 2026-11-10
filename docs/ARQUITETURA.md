@@ -191,7 +191,16 @@ tempo. Nenhum CSS de componente escreve um valor literal de cor ou medida.
 - **Espaçamento:** base de 4 px, de `--space-1` a `--space-20`.
 - **Movimento:** quatro durações e quatro curvas, entre elas uma com leve excesso
   (`--ease-spring`) para microinterações de botão.
-- **Marca:** degradê carmim → âmbar, igual nos dois temas.
+- **Marca:** três cores dão a identidade — **Midnight Black `#030407`** como
+  principal, **Electric Cobalt `#1558c9`** como secundária e **Acid Lime
+  `#d4ff24`** como terciária. O preto é a base, o cobalto marca o que é
+  interativo e o lima marca o que merece destaque (favoritos, insígnias,
+  vencedor da comparação, foco do teclado).
+- **Dois degradês, não um:** `--brand-gradient` (cobalto → lima) preenche
+  marcas e barras; `--brand-gradient-text` é uma rampa própria para texto
+  recortado, porque o cobalto cheio lido como texto não alcança 4,5:1 em
+  nenhum dos dois temas. O mesmo motivo tirou o degradê do botão primário,
+  que hoje é cobalto sólido com tinta branca (6,4:1).
 
 ### Os dois temas
 

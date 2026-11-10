@@ -42,12 +42,12 @@ body::before {
   background:
     radial-gradient(
       62rem 42rem at 12% -8%,
-      rgb(232 56 79 / calc(var(--aura-strength) * 0.22)),
+      rgb(21 88 201 / calc(var(--aura-strength) * 0.3)),
       transparent 62%
     ),
     radial-gradient(
       52rem 38rem at 92% 4%,
-      rgb(255 197 61 / calc(var(--aura-strength) * 0.16)),
+      rgb(212 255 36 / calc(var(--aura-strength) * 0.12)),
       transparent 60%
     );
 }
@@ -171,7 +171,7 @@ h4 {
 }
 
 .brand-text {
-  background: var(--brand-gradient);
+  background: var(--brand-gradient-text);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

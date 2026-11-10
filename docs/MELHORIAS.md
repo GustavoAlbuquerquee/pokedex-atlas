@@ -47,7 +47,7 @@ A análise que originou esta lista está em [ANALISE-PROJETO-ORIGINAL.md](ANALIS
 
 | # | Melhoria | Situação antes | Situação agora |
 | - | -------- | -------------- | -------------- |
-| 4.1 | **Identidade própria** | Aparelho Pokédex desenhado em CSS, com capa e dois skins | Produto digital próprio: marca "Pokédex Atlas", degradê carmim→âmbar, tipografia Sora + Inter, ícones SVG desenhados no projeto |
+| 4.1 | **Identidade própria** | Aparelho Pokédex desenhado em CSS, com capa e dois skins | Produto digital próprio: marca "Pokédex Atlas", paleta própria de três cores (preto, cobalto e lima), tipografia Sora + Inter, ícones SVG desenhados no projeto |
 | 4.2 | **Uso da tela** | A moldura do aparelho encaixotava o conteúdo; os detalhes precisavam de *container queries* de altura só para caber | Navegação lateral + conteúdo em largura total; no dossiê, a arte fica fixa e só a coluna de dados rola |
 | 4.3 | **Sistema de tokens** | Cores e medidas espalhadas pelos CSS dos componentes | `styles/tokens.css` como fonte única de cor, tipografia, espaçamento, raio, sombra e tempo; nenhum componente escreve valor literal |
 | 4.4 | **Paleta de tipos** | Paleta padrão | Paleta própria, calibrada para os dois temas, com a cor de texto escolhida por contraste WCAG e a cor exposta como `rgb` para transparências |
@@ -55,6 +55,7 @@ A análise que originou esta lista está em [ANALISE-PROJETO-ORIGINAL.md](ANALIS
 | 4.6 | **Dossiê mais completo** | Atributos, total, ponto forte e treinadores | Acrescenta ponto fraco, média, posição de **cada** atributo entre os 151 e tipos clicáveis que filtram a Pokédex |
 | 4.7 | **Estados vazios** | Três mensagens | Mensagens específicas por causa — inclusive a combinação **E** impossível, que sugere trocar para **OU** |
 | 4.8 | **Tema claro de verdade** | Mesmo desenho com cores mais claras | Variáveis próprias de brilho, reflexo e intensidade da aura, para o desenho funcionar nos dois temas |
+| 4.9 | **Paleta de marca com contraste verificado** | — | Três cores (preto `#030407`, cobalto `#1558c9`, lima `#d4ff24`) com cada papel medido na aplicação: nenhum texto abaixo de 4,5:1 em nenhum dos dois temas |
 
 ---
 
@@ -93,7 +94,7 @@ A análise que originou esta lista está em [ANALISE-PROJETO-ORIGINAL.md](ANALIS
 | 7.2 | Análise do projeto de referência, com diagnóstico e plano de evolução |
 | 7.3 | Documentação de arquitetura, com as decisões técnicas e seus porquês |
 | 7.4 | Matriz de conformidade item a item com o enunciado |
-| 7.5 | Relatório de testes com resultados reais e os 14 defeitos encontrados e corrigidos |
+| 7.5 | Relatório de testes com resultados reais e os 16 defeitos encontrados e corrigidos |
 | 7.6 | Comentários no código explicando **por que** cada decisão foi tomada, não o que a linha faz |
 
 ---

@@ -73,10 +73,28 @@
   --sidenav-width-compact: 76px;
   --mobile-nav-height: 68px;
 
-  /* ---------- Marca (igual nos dois temas) ---------- */
-  --brand-crimson: #e8384f;
-  --brand-amber: #ffc53d;
-  --brand-gradient: linear-gradient(135deg, #e8384f 0%, #ff7a3d 52%, #ffc53d 100%);
+  /* ---------- Marca ----------
+     Três cores dão a identidade do produto:
+
+       Midnight Black  #030407  principal — a base sobre a qual tudo assenta
+       Electric Cobalt #1558c9  secundária — a cor do que é interativo
+       Acid Lime       #d4ff24  terciária — a cor do que merece destaque
+
+     As três são fixas. O que varia por tema é como cada uma é usada: o
+     cobalto puro lido como texto sobre o preto dá 3,2:1, abaixo do mínimo
+     da WCAG, então o tema escuro usa um tom mais claro dele para texto e
+     guarda o cobalto cheio para preenchimentos. O lima faz o caminho
+     inverso: brilha no escuro e precisa escurecer no tema claro.
+     ------------------------------------------------------------------ */
+  --brand-black: #030407;
+  --brand-cobalt: #1558c9;
+  --brand-lime: #d4ff24;
+  --brand-gradient: linear-gradient(135deg, #1558c9 0%, #1b8fd6 52%, #d4ff24 100%);
+
+  /* O degrade acima e para preenchimento. Como texto, o cobalto cheio
+     nao alcanca 4,5:1 em nenhum dos dois temas, entao o texto em degrade
+     usa uma rampa propria, redefinida por tema mais abaixo. */
+  --brand-gradient-text: var(--brand-gradient);
 }
 
 /* ==========================================================================
@@ -86,38 +104,50 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --bg-base: #07080c;
-  --bg-deep: #04050a;
-  --surface-1: #0e1017;
-  --surface-2: #141822;
-  --surface-3: #1b202c;
-  --surface-raised: #1f2533;
-  --surface-glass: rgb(14 16 23 / 72%);
+  /* As superfícies sobem a partir do Midnight Black, puxadas um grau para o
+     azul do cobalto a cada degrau: a elevação se lê sem precisar de borda. */
+  --bg-deep: #030407;
+  --bg-base: #05070d;
+  --surface-1: #0a0e18;
+  --surface-2: #0f1524;
+  --surface-3: #151d30;
+  --surface-raised: #1a2338;
+  --surface-glass: rgb(10 14 24 / 72%);
 
   --border-subtle: rgb(255 255 255 / 7%);
   --border-default: rgb(255 255 255 / 11%);
   --border-strong: rgb(255 255 255 / 18%);
 
-  --text-primary: #f1f3f8;
-  --text-secondary: #aeb6c6;
-  --text-muted: #79819a;
+  --text-primary: #eef2fa;
+  --text-secondary: #abb5ca;
+  --text-muted: #7a849d;
   --text-faint: #7b8398;
-  --text-inverse: #0a0b10;
+  --text-inverse: #030407;
 
-  --accent: #ff7a3d;
-  --accent-soft: rgb(255 122 61 / 16%);
-  --accent-ink: #14161c;
+  /* Cobalto clareado: 7,4:1 sobre o preto, legível como texto. */
+  --accent: #5c9bff;
+  --accent-strong: #1558c9;
+  --accent-soft: rgb(21 88 201 / 26%);
+  --accent-ink: #ffffff;
+  --brand-gradient-text: linear-gradient(135deg, #5c9bff 0%, #7fd4f0 48%, #d4ff24 100%);
+
+  /* Lima no escuro: 17,7:1, o maior contraste da paleta. */
+  --highlight: #d4ff24;
+  --highlight-fill: #d4ff24;
+  --highlight-ink: #030407;
 
   --success: #35d08a;
   --warning: #ffc53d;
   --danger: #ff5b6e;
 
-  --focus-ring: #7aa2ff;
+  /* O foco é lima de propósito: precisa aparecer inclusive em cima do que
+     já é cobalto, e nenhum componente usa lima como fundo. */
+  --focus-ring: #d4ff24;
 
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 55%);
-  --shadow-md: 0 8px 24px -8px rgb(0 0 0 / 70%);
-  --shadow-lg: 0 24px 60px -18px rgb(0 0 0 / 80%);
-  --shadow-glow: 0 0 0 1px rgb(255 255 255 / 6%), 0 18px 48px -22px rgb(0 0 0 / 90%);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 60%);
+  --shadow-md: 0 8px 24px -8px rgb(0 0 0 / 74%);
+  --shadow-lg: 0 24px 60px -18px rgb(0 0 0 / 84%);
+  --shadow-glow: 0 0 0 1px rgb(255 255 255 / 6%), 0 18px 48px -22px rgb(0 0 0 / 92%);
 
   /* Brilho interno que dá o "rim light" dos cards no escuro */
   --rim-light: inset 0 1px 0 rgb(255 255 255 / 7%);
@@ -127,7 +157,7 @@
     rgb(255 255 255 / 0%) 38%
   );
   --aura-strength: 0.5;
-  --art-drop-shadow: drop-shadow(0 18px 24px rgb(0 0 0 / 55%));
+  --art-drop-shadow: drop-shadow(0 18px 24px rgb(0 0 0 / 60%));
 }
 
 /* ==========================================================================
@@ -136,38 +166,47 @@
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --bg-base: #f4f5f8;
-  --bg-deep: #e9ebf1;
+  --bg-deep: #e7eaf2;
+  --bg-base: #f3f5fa;
   --surface-1: #ffffff;
-  --surface-2: #f7f8fb;
-  --surface-3: #eef0f6;
+  --surface-2: #f6f8fc;
+  --surface-3: #ecf0f8;
   --surface-raised: #ffffff;
   --surface-glass: rgb(255 255 255 / 80%);
 
-  --border-subtle: rgb(14 18 32 / 7%);
-  --border-default: rgb(14 18 32 / 11%);
-  --border-strong: rgb(14 18 32 / 18%);
+  --border-subtle: rgb(3 4 7 / 8%);
+  --border-default: rgb(3 4 7 / 12%);
+  --border-strong: rgb(3 4 7 / 20%);
 
-  --text-primary: #10131c;
-  --text-secondary: #474f63;
-  --text-muted: #6b738a;
+  --text-primary: #030407;
+  --text-secondary: #434c61;
+  --text-muted: #646d85;
   --text-faint: #6a7284;
   --text-inverse: #ffffff;
 
-  --accent: #d9452b;
-  --accent-soft: rgb(217 69 43 / 10%);
+  /* No claro o cobalto cheio já é legível: 6,4:1 sobre o branco. */
+  --accent: #1558c9;
+  --accent-strong: #1558c9;
+  --accent-soft: rgb(21 88 201 / 12%);
   --accent-ink: #ffffff;
+  --brand-gradient-text: linear-gradient(135deg, #1558c9 0%, #176a9e 50%, #52700a 100%);
 
-  --success: #107a52;
-  --warning: #9a6a00;
+  /* O lima puro sobre branco dá 1,1:1. Como texto ele escurece; como
+     preenchimento continua sendo o lima, com tinta preta por cima. */
+  --highlight: #52700a;
+  --highlight-fill: #d4ff24;
+  --highlight-ink: #030407;
+
+  --success: #0f7a50;
+  --warning: #8a5d00;
   --danger: #c22a3c;
 
-  --focus-ring: #2a5bd7;
+  --focus-ring: #1558c9;
 
-  --shadow-sm: 0 1px 2px rgb(16 19 28 / 7%);
-  --shadow-md: 0 10px 26px -12px rgb(16 19 28 / 22%);
-  --shadow-lg: 0 28px 64px -24px rgb(16 19 28 / 28%);
-  --shadow-glow: 0 0 0 1px rgb(16 19 28 / 5%), 0 18px 40px -24px rgb(16 19 28 / 25%);
+  --shadow-sm: 0 1px 2px rgb(3 4 7 / 8%);
+  --shadow-md: 0 10px 26px -12px rgb(3 4 7 / 24%);
+  --shadow-lg: 0 28px 64px -24px rgb(3 4 7 / 30%);
+  --shadow-glow: 0 0 0 1px rgb(3 4 7 / 6%), 0 18px 40px -24px rgb(3 4 7 / 26%);
 
   --rim-light: inset 0 1px 0 rgb(255 255 255 / 90%);
   --card-sheen: linear-gradient(
@@ -176,5 +215,5 @@
     rgb(255 255 255 / 0%) 46%
   );
   --aura-strength: 0.32;
-  --art-drop-shadow: drop-shadow(0 14px 18px rgb(16 19 28 / 22%));
+  --art-drop-shadow: drop-shadow(0 14px 18px rgb(3 4 7 / 24%));
 }

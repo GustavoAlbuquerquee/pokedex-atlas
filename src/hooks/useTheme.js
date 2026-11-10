@@ -26,7 +26,7 @@ export default function useTheme() {
     root.style.colorScheme = theme;
     document
       .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", theme === "light" ? "#f4f5f8" : "#07080c");
+      ?.setAttribute("content", theme === "light" ? "#f3f5fa" : "#030407");
   }, [theme]);
 
   const toggleTheme = useCallback(() => {

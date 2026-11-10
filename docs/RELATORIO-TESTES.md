@@ -49,6 +49,8 @@ item foi marcado como aprovado por inspeção de código.
 | 3.4 | `mr mime` | Mr. Mime (pontuação ignorada) | Mr. Mime | ✅ |
 | 3.5 | `farfetchd` | Farfetch'd (apóstrofo ignorado) | Farfetch'd | ✅ |
 | 3.6 | `zzzz` | Estado vazio com ação | "Nada encontrado para “zzzz”" + "Confira a grafia ou pesquise pelo número, de 1 a 151." + botão limpar | ✅ |
+
+![Estado vazio da pesquisa](imagens/10-estado-vazio.jpg)
 | 3.7 | Digitação contínua | Lista atualiza a cada tecla, sem botão | Resultado muda a cada caractere | ✅ |
 | 3.8 | `Esc` no campo | Limpa a pesquisa | Campo esvaziado, lista restaurada | ✅ |
 
@@ -212,6 +214,8 @@ Todos encontrados testando no navegador e corrigidos neste mesmo ciclo.
 | 13.13 | **Avisos do oxlint** | Refs lidas durante a renderização, `setState` dentro de efeito, hook sem uso, imports mortos | `useLocalStorage` reescrito com conversores constantes; `useProgressiveList` passou a ajustar o estado durante a renderização; arquivos e imports removidos |
 
 | 13.14 | **Ponto de “novidade” permanente na barra inferior** | O ponto aparecia sempre que o item tinha contagem, e Treinadores tem 12 fixos | O ponto passou a valer só para o que é do usuário: favoritos e comparação |
+| 13.15 | **Texto do botão primário ilegível sobre o degradê** | Encontrado ao trocar a paleta: o botão usava `color: #fff` sobre `--brand-gradient`, que agora termina em lima. Branco sobre `#d4ff24` dá 1,1:1 | O botão primário passou a ser cobalto sólido (`--accent-strong`) com tinta branca: 6,4:1 |
+| 13.16 | **Texto recortado em degradê abaixo do mínimo** | A palavra "Atlas" da marca e os números do painel usam `background-clip: text`. Com o cobalto cheio na rampa, a primeira parada ficava em 3,2:1 | Rampa separada `--brand-gradient-text`, redefinida por tema, com todas as paradas acima de 4,5:1 |
 ---
 
 ## 14. Limitações conhecidas
@@ -222,3 +226,60 @@ Todos encontrados testando no navegador e corrigidos neste mesmo ciclo.
 | Imagens | Dependem da PokéAPI e do Pokémon Showdown. Sem internet, a aplicação funciona por inteiro, mas com o substituto em SVG no lugar das artes. |
 | Navegadores | Verificado em Chromium. O CSS usa `color-mix()`, `@media (width <= …)` e `:has`-free seletores — todos suportados por Chrome, Edge, Firefox e Safari recentes; navegadores antigos não são alvo. |
 | Repetição no time | Quando um treinador tem o mesmo Pokémon mais de uma vez, o dossiê abre uma vez só para aquele ID (a URL identifica o Pokémon, não a vaga no time). O time continua exibindo todas as repetições. |
+
+---
+
+## 15. Verificação da paleta
+
+A identidade passou a ser construída sobre três cores: **Midnight Black `#030407`**
+(principal), **Electric Cobalt `#1558c9`** (secundária) e **Acid Lime `#d4ff24`**
+(terciária). A paleta dos 18 tipos de Pokémon **não** foi alterada — ela é semântica
+e exigida pela atividade.
+
+Os contrastes abaixo foram **medidos na aplicação rodando**, lendo as variáveis CSS
+resolvidas e aplicando a fórmula de luminância relativa da WCAG, não estimados.
+
+### Tema escuro (sobre `--bg-base` `#05070d`)
+
+| Token | Cor | Contraste | Mínimo exigido |
+| ----- | --- | --------- | -------------- |
+| `--text-primary` | `#eef2fa` | 17,95:1 | 4,5:1 ✅ |
+| `--text-secondary` | `#abb5ca` | 9,78:1 | 4,5:1 ✅ |
+| `--text-muted` | `#7a849d` | 5,39:1 | 4,5:1 ✅ |
+| `--text-faint` | `#7b8398` | 5,32:1 | 4,5:1 ✅ |
+| `--accent` | `#5c9bff` | 7,28:1 | 4,5:1 ✅ |
+| `--highlight` | `#d4ff24` | 17,39:1 | 4,5:1 ✅ |
+| `--focus-ring` | `#d4ff24` | 17,39:1 | 3:1 ✅ |
+| Botão primário | branco sobre `#1558c9` | 6,42:1 | 4,5:1 ✅ |
+
+### Tema claro (sobre `--surface-1` `#ffffff`)
+
+| Token | Cor | Contraste | Mínimo exigido |
+| ----- | --- | --------- | -------------- |
+| `--text-primary` | `#030407` | 20,50:1 | 4,5:1 ✅ |
+| `--text-secondary` | `#434c61` | 8,59:1 | 4,5:1 ✅ |
+| `--text-muted` | `#646d85` | 5,16:1 | 4,5:1 ✅ |
+| `--text-faint` | `#6a7284` | 4,82:1 | 4,5:1 ✅ |
+| `--accent` | `#1558c9` | 6,42:1 | 4,5:1 ✅ |
+| `--highlight` | `#52700a` | 5,71:1 | 4,5:1 ✅ |
+| Lima de preenchimento | `#030407` sobre `#d4ff24` | 17,70:1 | 4,5:1 ✅ |
+
+### Por que o lima muda de tom no tema claro
+
+`#d4ff24` lido como texto sobre branco dá **1,08:1** — invisível. Por isso o token
+`--highlight` escurece para `#52700a` no tema claro, enquanto `--highlight-fill`
+continua sendo o lima puro para preenchimentos, sempre com tinta preta por cima.
+No tema escuro os dois são a mesma cor.
+
+### O que foi verificado além do contraste
+
+| # | Verificação | Resultado |
+| - | ----------- | --------- |
+| 15.1 | Nenhum literal da paleta antiga restou no código | `grep` por `e8384f`, `ff7a3d`, `ffc53d`, `232 56 79`, `d9452b`, `07080c` e `--brand-crimson`/`--brand-amber`: zero ocorrências |
+| 15.2 | `oxlint --deny-warnings src` | Sem erros e sem avisos |
+| 15.3 | `npm run build` | Sem avisos — 318,95 kB JS (94,13 kB gzip), 71,57 kB CSS (11,82 kB gzip) |
+| 15.4 | Console do navegador | Zero erros nas seis telas |
+| 15.5 | Cores de tipo preservadas | Bulbasaur segue verde, Charmander laranja, Pikachu amarelo; o filtro segue com 17 chips |
+| 15.6 | `meta[name=theme-color]` acompanha o tema | `#030407` no escuro, `#f3f5fa` no claro, trocando junto com o botão |
+| 15.7 | Favicon | Redesenhado com o degradê cobalto → lima sobre o preto da marca |
+| 15.8 | As 10 capturas da documentação | Refeitas com a nova paleta, nos dois temas e nos dois tamanhos de tela |

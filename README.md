@@ -22,7 +22,10 @@ navegador a partir dele. As imagens vêm de repositórios públicos e são apena
 complemento visual: **sem internet, a aplicação continua funcionando por inteiro**,
 com um substituto desenhado em SVG no lugar das artes.
 
-A identidade visual é própria: paleta de tipos calibrada para os temas claro e escuro,
+A identidade visual é própria e nasce de três cores — **Midnight Black `#030407`**,
+**Electric Cobalt `#1558c9`** e **Acid Lime `#d4ff24`**: o preto é a base, o cobalto
+marca o que é interativo e o lima marca o que merece destaque. Junto vêm a paleta de
+tipos calibrada para os temas claro e escuro,
 tipografia Sora + Inter, ícones SVG desenhados no projeto e um sistema de tokens de
 design que governa cor, espaçamento, raio e movimento em toda a interface.
 

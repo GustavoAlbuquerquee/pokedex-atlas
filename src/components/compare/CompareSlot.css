@@ -60,9 +60,9 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--brand-amber);
-  background: color-mix(in srgb, var(--brand-amber) 14%, transparent);
-  border: 1px solid color-mix(in srgb, var(--brand-amber) 42%, transparent);
+  color: var(--highlight);
+  background: color-mix(in srgb, var(--highlight) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--highlight) 42%, transparent);
   border-radius: var(--radius-full);
 }
 

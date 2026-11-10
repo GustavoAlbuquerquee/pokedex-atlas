@@ -30,7 +30,7 @@
   pointer-events: none;
   background: radial-gradient(
     closest-side,
-    color-mix(in srgb, var(--brand-crimson) 20%, transparent),
+    color-mix(in srgb, var(--brand-cobalt) 20%, transparent),
     transparent 72%
   );
   filter: blur(6px);

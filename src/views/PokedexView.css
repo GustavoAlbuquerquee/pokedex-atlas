@@ -18,7 +18,7 @@
   background:
     linear-gradient(
       120deg,
-      color-mix(in srgb, var(--brand-crimson) 11%, transparent),
+      color-mix(in srgb, var(--brand-cobalt) 11%, transparent),
       transparent 46%
     ),
     var(--surface-1);
@@ -36,7 +36,7 @@
   pointer-events: none;
   background: radial-gradient(
     closest-side,
-    color-mix(in srgb, var(--brand-amber) 22%, transparent),
+    color-mix(in srgb, var(--brand-lime) 22%, transparent),
     transparent 72%
   );
   filter: blur(8px);

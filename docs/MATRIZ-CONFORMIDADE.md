@@ -102,7 +102,7 @@ Legenda: ✅ atendido · ⭐ extra além do pedido
 
 | # | Requisito | Situação | Evidência |
 | - | --------- | -------- | --------- |
-| 8.1 | **Identidade visual própria** | ✅ | Marca "Pokédex Atlas", degradê carmim→âmbar, tokens próprios, tipografia Sora + Inter, ícones desenhados no projeto |
+| 8.1 | **Identidade visual própria** | ✅ | Marca "Pokédex Atlas", paleta própria de três cores (preto `#030407`, cobalto `#1558c9`, lima `#d4ff24`), tokens próprios, tipografia Sora + Inter, ícones desenhados no projeto |
 | 8.2 | Cores associadas aos tipos | ✅ | Paleta própria; cor do texto escolhida por contraste WCAG |
 | 8.3 | Cards | ✅ | `PokemonCard` com aura do tipo, arte e atributos |
 | 8.4 | Gradientes | ✅ | Marca, auras de tipo, preenchimento das barras |

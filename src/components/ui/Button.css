@@ -41,16 +41,16 @@
 
 /* Preenchido com a marca: a ação principal de cada tela. */
 .btn--primary {
-  color: #fff;
-  background: var(--brand-gradient);
+  color: var(--accent-ink);
+  background: var(--accent-strong);
   border-color: transparent;
-  box-shadow: 0 8px 22px -12px rgb(232 56 79 / 85%);
+  box-shadow: 0 8px 22px -12px rgb(21 88 201 / 85%);
 }
 
 .btn--primary:hover:not(:disabled) {
-  background: var(--brand-gradient);
-  filter: brightness(1.07);
-  box-shadow: 0 12px 28px -12px rgb(232 56 79 / 95%);
+  background: var(--accent-strong);
+  filter: brightness(1.14);
+  box-shadow: 0 12px 28px -12px rgb(21 88 201 / 95%);
 }
 
 .btn--ghost {
